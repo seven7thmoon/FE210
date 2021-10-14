@@ -7,6 +7,27 @@
 </head>
 
 <body>
+  <script>
+    function getData() {
+      let cilent_id = 'c9ul74v9g2ukrk8r3p8cgd9f1eqhxb' //使用者ID
+      let access_token = 'cjyavft5ft0f8jehbwf1l222io2a9f' //TOKEN
+      let api = 'https://api.twitch.tv/helix/streams'
+
+      const intro = new XMLHttpRequest()
+      intro.open('GET', api)
+      // intro.setRequestHeader('client_id', cilent_id)
+      intro.setRequestHeader('Client-Id', cilent_id) // header 的名稱要注意底線跟連字號的差異
+      intro.setRequestHeader('Authorization', 'Bearer ' + access_token)
+      intro.send()
+      intro.onload = function(e) {
+        // const results = JSON.parse(request.response).data
+        const results = JSON.parse(intro.response).data // request 變數名稱不存在
+        // callback(results)
+        console.log(results) // callback 變數不存在
+      }
+    }
+    getData()
+  </script>
 	<div class="container">
 	  <div class="row">
       <div class="col">
